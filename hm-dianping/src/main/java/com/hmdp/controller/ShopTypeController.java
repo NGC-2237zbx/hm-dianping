@@ -1,6 +1,7 @@
 package com.hmdp.controller;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.hmdp.dto.Result;
 import com.hmdp.entity.ShopType;
 import com.hmdp.service.IShopTypeService;
@@ -26,9 +27,7 @@ public class ShopTypeController {
     private IShopTypeService typeService;
 
     @GetMapping("list")
-    public Result queryTypeList() {
-        List<ShopType> typeList = typeService
-                .query().orderByAsc("sort").list();
-        return Result.ok(typeList);
+    public Result queryTypeList() throws JsonProcessingException {
+        return typeService.queryShopType();
     }
 }
